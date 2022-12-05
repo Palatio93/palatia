@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 from apriori import main as mainApriori
 from metricas import main as mainMetricas
 from cluster import main as mainCluster
+from pronostico import main as mainPronostico
 
 app = Flask(__name__)
 
@@ -39,4 +40,9 @@ def cluster():
   mainCluster()
   return render_template('algoritmos/cluster.html')
 
+
+@app.route('/pronostico')
+def pronostico():
+  mainPronostico()
+  return render_template('algoritmos/pronostico.html')
 
