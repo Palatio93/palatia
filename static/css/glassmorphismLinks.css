@@ -1,0 +1,230 @@
+/*
+  Here are all the css rules for the effect of glassmorphism cards.
+  Used primarily to display the algorithms
+*/
+
+
+.project-links {
+  width: 80%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 40px 0;
+}
+
+.project-links .project-box {
+  position: relative;
+  width: 320px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 30px;
+  transition: 0.5s;
+}
+
+.project-links .project-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50px;
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  border-radius: 8px;
+  transform: skewX(15deg);
+  transition: 0.5s;
+}
+
+.project-links .project-box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50px;
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  border-radius: 8px;
+  transform: skewX(15deg);
+  transition: 0.5s;
+  filter: blur(30px);
+}
+
+.project-links .project-box:hover:before,
+.project-links .project-box:hover:after {
+  transform: skewX(0deg);
+  left: 20px;
+  width: calc(100% - 90px);
+}
+
+.project-links .project-box:nth-child(1):before,
+.project-links .project-box:nth-child(1):after {
+  background: linear-gradient(315deg, #ffbc00, #ff0058);
+}
+
+.project-links .project-box:nth-child(2):before,
+.project-links .project-box:nth-child(2):after {
+  background: linear-gradient(315deg, #03a9f4, #ff0058);
+}
+
+.project-links .project-box:nth-child(3):before,
+.project-links .project-box:nth-child(3):after {
+  background: linear-gradient(315deg, #fff3f3, #f44336);
+}
+
+.project-links .project-box:nth-child(4):before,
+.project-links .project-box:nth-child(4):after {
+  background: linear-gradient(315deg, #0077B6, #CAF0F8);
+}
+
+.project-links .project-box:nth-child(5):before,
+.project-links .project-box:nth-child(5):after {
+  background: linear-gradient(315deg, #f6ae2d, #2f4858);
+}
+
+.project-links .project-box:nth-child(6):before,
+.project-links .project-box:nth-child(6):after {
+  background: linear-gradient(315deg, #08415c, #e3e0cd);
+}
+
+.project-links .project-box:nth-child(7):before,
+.project-links .project-box:nth-child(7):after {
+  background: linear-gradient(315deg, #fbf5f3ff, rgba(238, 99, 82, 1));
+}
+
+.project-links .project-box:nth-child(8):before,
+.project-links .project-box:nth-child(8):after {
+  background: linear-gradient(315deg, hsla(339, 80%, 12%, 1), #fbf5f3ff);
+}
+
+.project-links .project-box:nth-child(9):before,
+.project-links .project-box:nth-child(9):after {
+  background: linear-gradient(315deg, beige, brown);
+}
+
+.project-links .project-box:nth-child(10):before,
+.project-links .project-box:nth-child(10):after {
+  background: linear-gradient(315deg, #a43cffff, #ebdddaff);
+}
+
+.project-links .project-box:nth-child(11):before,
+.project-links .project-box:nth-child(11):after {
+  background: linear-gradient(315deg, #efefe9ff, #b96d40ff);
+}
+
+.project-links .project-box span {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.project-links .project-box span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: 0.5s;
+  animation: animate 2s ease-in-out infinite;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.project-links .project-box:hover span::before {
+  top: -50px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  opacity: 1;
+}
+
+.project-links .project-box span::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: 0.5s;
+  animation: animate 2s ease-in-out infinite;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  animation-delay: -1s;
+}
+
+.project-links .project-box:hover span::after {
+  bottom: -50px;
+  right: 50px;
+  width: 100px;
+  height: 100px;
+  opacity: 1;
+}
+
+@keyframes animate {
+
+  0%,
+  100% {
+    transform: translateY(10px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+}
+
+.project-links .project-box .content {
+  position: relative;
+  left: 0;
+  padding: 20px 40px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  z-index: 1;
+  transition: 0.5s;
+  /* color: hsla(231, 82%, 6%, 1);  Here to change color of the entire card */
+}
+
+.project-links .project-box:hover .content {
+  left: -25px;
+  padding: 60px 40px;
+}
+
+.project-links .project-box .content h2 {
+  font-size: 2em;
+  /* color: hsla(231, 82%, 6%, 1); */
+  margin-bottom: 10px;
+}
+
+.project-links .project-box .content p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  line-height: 1.4em;
+}
+
+.project-links .project-box .content a {
+  display: inline-block;
+  font-size: 1.1em;
+  color: hsla(339, 80%, 12%, 1);
+  background: hsla(42, 100%, 46%, 1);
+  padding: 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 700;
+  margin-top: 5px;
+}

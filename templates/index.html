@@ -5,11 +5,88 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesIndex.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/glassmorphismLinks.css') }}">
 
   <title>Document</title>
 </head>
 <body>
+
+  <header>
+    <nav class="nav-bar">
+      <div class="nav-links" id="nav-links">
+        <ul>
+          <li>
+            <a href="/" class="decor-link">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Home
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section class="about-me">
+    <div class="about-box">
+      <h1>Presentacion mamalona</h1>
+    </div>
+  </section>
+
+  <section class="project-links" id="projects">
+    <div class="project-box">
+      <span></span>
+      <div class="content">
+        <h2>A priori</h2>
+        <p>This is a project where we see an animation in an entire webpage.</p>
+        <a href="apriori" rel="noreferrer">
+          Usar algoritmo A priori
+        </a>
+      </div>
+    </div>
+
+    <div class="project-box">
+      <span></span>
+      <div class="content">
+        <h2>Métricas de distancia</h2>
+        <p>This is a project where we see an animation in an entire webpage.</p>
+        <a href="metricas" rel="noreferrer">
+          Usar algoritmo de Métricas
+        </a>
+      </div>
+    </div>
+
+    <div class="project-box">
+      <span></span>
+      <div class="content">
+        <h2>Clusterización Jerárquica</h2>
+        <p>This is a project where we see an animation in an entire webpage.</p>
+        <a href="cluster" rel="noreferrer">
+          Usar algoritmo de Clusterización Jerárquica
+        </a>
+      </div>
+    </div>
+
+    <div class="project-box">
+      <span></span>
+      <div class="content">
+        <h2>Pronóstico RLM</h2>
+        <p>This is a project where we see an animation in an entire webpage.</p>
+        <a href="pronostico" rel="noreferrer">
+          Usar algoritmo de Pronóstico RLM
+        </a>
+      </div>
+    </div>
+    
+  </section>
+  
+
+
+
+<!-- 
   <div id="menu">
     <div id="menu-items">
       <a class="menu-item" href="presentacion">Presentacion</a>
@@ -20,7 +97,7 @@
     </div>
     <div id="menu-background-pattern"></div>
     <div id="menu-background-image"></div>
-  </div>
+  </div> -->
 
   <script src="../static/js/index.js"></script>
 </body>

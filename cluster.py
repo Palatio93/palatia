@@ -151,4 +151,6 @@ def main():
   fourth_plot(MEstandarizada)
   CentroidesH = hierarching(BCancer,MEstandarizada)
   CentroidesP = kneeing(BCancer, MEstandarizada)
+  print(CentroidesP)
+  
   return

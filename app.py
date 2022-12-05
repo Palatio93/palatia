@@ -15,13 +15,26 @@ def index():
 def presentacion():
   return render_template('algoritmos/presentacion.html')
 
+# @app.route('/apriori', methods=['GET','POST'])
+# def apriori():
+#   if request.method == "GET":
+#     return render_template('algoritmos/apriori_settings.html')
+#   if request.method == "POST":
+#     f = request.files['dataset']
+#     f.save(secure_filename(f.filename))
+#     soporte = float(request.form['soporte'])
+#     confi = float(request.form['confi'])
+#     lifto = float(request.form['lifto'])
+#     Resultados = mainApriori(soporte,confi,lifto)
+#     return render_template('algoritmos/apriori.html', resultados=Resultados)
+
 @app.route('/apriori', methods=['GET','POST'])
 def apriori():
   if request.method == "GET":
     return render_template('algoritmos/apriori_settings.html')
   if request.method == "POST":
-    f = request.files['dataset']
-    f.save(secure_filename(f.filename))
+    # f = request.files['dataset']
+    # f.save(secure_filename(f.filename))
     soporte = float(request.form['soporte'])
     confi = float(request.form['confi'])
     lifto = float(request.form['lifto'])
