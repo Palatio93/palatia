@@ -1,6 +1,7 @@
 # from requests import request
 from flask import Flask, render_template, request
-from apriori import main
+from apriori import main as mainApriori
+from metricas import main as mainMetricas
 
 app = Flask(__name__)
 
@@ -22,12 +23,13 @@ def apriori():
     soporte = float(request.form['soporte'])
     confi = float(request.form['confi'])
     lifto = float(request.form['lifto'])
-    Resultados = main(soporte,confi,lifto)
+    Resultados = mainApriori(soporte,confi,lifto)
     return render_template('algoritmos/apriori.html', resultados=Resultados)
 
 
 @app.route('/metricas')
 def metricas():
+  mainMetricas()
   return render_template('algoritmos/metricas.html')
 
 

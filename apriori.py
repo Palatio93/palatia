@@ -27,8 +27,8 @@ def crea_grafico():
   plt.ylabel('Item')
   plt.xlabel('Frecuencia')
   plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='blue')
-  plt.savefig('fig1.png')
-  plt.savefig('fig1.pdf')
+  plt.savefig('Apriori/apriori1.png')
+  plt.savefig('Apriori/apriori1.pdf')
 
 def sanitization():
   DatosTransacciones = datos_transacciones()
