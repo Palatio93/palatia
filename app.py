@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request
 from apriori import main as mainApriori
 from metricas import main as mainMetricas
+from cluster import main as mainCluster
 
 app = Flask(__name__)
 
@@ -31,5 +32,11 @@ def apriori():
 def metricas():
   mainMetricas()
   return render_template('algoritmos/metricas.html')
+
+
+@app.route('/cluster')
+def cluster():
+  mainCluster()
+  return render_template('algoritmos/cluster.html')
 
 

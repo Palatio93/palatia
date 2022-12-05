@@ -1,10 +1,10 @@
 import pandas as pd                         
 import numpy as np                          
 import matplotlib.pyplot as plt             
+import seaborn as sns
 from scipy.spatial.distance import cdist    
 from scipy.spatial import distance
 from sklearn.preprocessing import StandardScaler, MinMaxScaler  
-import seaborn as sns
 # get_ipython().run_line_magic('matplotlib', 'inline')
 
 def get_dataset():
