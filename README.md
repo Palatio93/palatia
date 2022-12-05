@@ -13,4 +13,4 @@ Se utilizan diferentes algoritmos de aprendizaje tanto supervisado como no super
 - A priori
 - Metricas de distancia
 - Clustering Jerárquico
-- Clasificación
+- Pronostico con RLM
