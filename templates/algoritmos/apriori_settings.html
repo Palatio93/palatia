@@ -1,0 +1,62 @@
+{% extends 'algoritmo.html' %}
+
+
+{% block content %}
+
+  <h1 class="text-center">{% block title %}Apriori{% endblock %}</h1>
+
+  <h2>Ingresa el dataset a analizar por el algoritmo aprior</h2>
+  <form action = "{{ url_for('apriori') }}" method = "POST" 
+  enctype = "multipart/form-data">
+    <div class="form-group">
+      <label for="dataset">Sube aquí tu dataset</label>
+      <input type="file" name="dataset" class="form-control-file" id="dataset">
+      <!-- <input type = "submit"/> -->
+    </div>
+  </form>
+
+  <h2>Ingresa los valores necesarios para procesar el algoritmo</h2>
+
+  <form action="{{ url_for('apriori') }}" method="POST">
+    <div class="form-row align-items-center">
+      <div class="col-auto">
+        <label for="soporte">Soporte</label>
+        <input type="number" name="soporte" id="soporte" class="form-control" step="0.0001" min="0" placeholder="Máximo 4 decimales" required>
+      </div>
+      <div class="col-md-3">
+        <label for="confi">Confianza</label>
+        <input type="number" name="confi" id="confi" class="form-control" step="0.01" min="0" max="1" placeholder="Máximo 2 decimales" required>
+      </div>
+      <div class="col-auto">
+        <label for="lifto">Elevación (Lift)</label>
+        <input type="number" name="lifto" id="lifto" class="form-control" step="0.01" min="0" required>
+      </div>
+      <div class="col-auto my-1">
+        <input type="submit" value="Calcular reglas"
+          class="btn btn-primary btn-sm"
+          onclick="return confirm('¿Los parámetros son correctos?')">
+      </div>
+    </div>
+  </form>
+
+  
+
+  <!-- <form action="" method="post">
+    <label for="soporte">Soporte</label>
+    <input type="number" name="soporte" id="soporte" class="form-control" step="0.0001" min="0" placeholder="Máximo 4 decimales" required>
+
+    <label for="confi">Confianza</label>
+    <input type="number" name="confi" id="confi" class="form-control" step="0.01" min="0" max="1" placeholder="Máximo 2 decimales" required>
+
+    <label for="lifto">Elevación (Lift)</label>
+    <input type="number" name="lifto" id="lifto" class="form-control" step="0.01" min="0" required>
+
+    <form action="{{ url_for('apriori') }}" method="POST">
+      <input type="submit" value="Calcular reglas"
+      class="btn btn-primary btn-sm"
+      onclick="return confirm('¿Los parámetros son correctos?')">
+    </form>
+
+  </form> -->
+
+{% endblock %}

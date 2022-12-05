@@ -1,0 +1,29 @@
+{% extends 'algoritmo.html' %}
+
+
+{% block content %}
+
+  <h1 class="text-center">{% block title %}Apriori{% endblock %}</h1>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <th>Regla</th>
+      <th>Soporte</th>
+      <th>Confianza</th>
+      <th>Lift</th>
+    </thead>
+      {% for regla in resultados %}
+      <tbody>
+        <tr>
+          <td>{{ regla.Regla }}</td>
+          <td>{{ '%.2f' % regla.Soporte }}</td>
+          <td>{{ '%.2f' % regla.Confianza + ' %' }}</td>
+          <td>{{ '%.2f' % regla.Lift }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="apriori">Regresar a configuración del algoritmo apriori</a>
+
+{% endblock %}
