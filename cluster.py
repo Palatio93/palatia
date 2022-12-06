@@ -152,5 +152,7 @@ def main():
   CentroidesH = hierarching(BCancer,MEstandarizada)
   CentroidesP = kneeing(BCancer, MEstandarizada)
   print(CentroidesP)
-  
+  for ind in CentroidesP.index:
+    print("Textura: ",CentroidesP["Texture"][ind])
+    print("Area: ", CentroidesP["Area"][ind])
   return

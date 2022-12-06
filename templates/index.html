@@ -8,13 +8,16 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesIndex.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/glassmorphismLinks.css') }}">
 
-  <title>Document</title>
+  <script src="https://kit.fontawesome.com/eebe13f46c.js" crossorigin="anonymous"></script>
+
+  <title>PALATIA INC.</title>
 </head>
 <body>
 
   <header>
     <nav class="nav-bar">
       <div class="nav-links" id="nav-links">
+        <i class="far fa-window-close" onclick="hideMenu()"></i>
         <ul>
           <li>
             <a href="/" class="decor-link">
@@ -27,12 +30,13 @@
           </li>
         </ul>
       </div>
+      <i class="fas fa-bars" onclick="showMenu()"></i>
     </nav>
   </header>
 
   <section class="about-me">
     <div class="about-box">
-      <h1>Presentacion mamalona</h1>
+      <h1>Presentacion del proyecto, de mí, que sucede aquí, reglas de uso</h1>
     </div>
   </section>
 
@@ -100,5 +104,16 @@
   </div> -->
 
   <script src="../static/js/index.js"></script>
+  <script>
+    var navLinks = document.getElementById("nav-links");
+
+    function showMenu() {
+      navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+      navLinks.style.right = "-700px";
+    }
+  </script>
 </body>
 </html>
