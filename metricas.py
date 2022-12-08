@@ -18,8 +18,8 @@ def print_first():
   plt.xlabel('Texture')
   plt.ylabel('Smoothness')
   #plt.show()
-  plt.savefig('Metricas/metricas1.png')
-  plt.savefig('Metricas/metricas1.pdf')
+  plt.savefig('./static/images/metricas/metricas1.png')
+  plt.savefig('./static/images/metricas/metricas1.pdf')
 
 def print_second():
   Diagnosticos = get_dataset()
@@ -28,8 +28,8 @@ def print_second():
   plt.xlabel('Texture')
   plt.ylabel('Smoothness')
   #plt.show()
-  plt.savefig('Metricas/metricas2.png')
-  plt.savefig('Metricas/metricas2.pdf')
+  plt.savefig('./static/images/metricas/metricas2.png')
+  plt.savefig('./static/images/metricas/metricas2.pdf')
 
 def do_corr():
   Diagnosticos = get_dataset()
@@ -38,8 +38,8 @@ def do_corr():
   MatrizTnf=np.triu(Diagnosticos.corr())
   sns.heatmap(Diagnosticos.corr(),cmap='RdBu_r', annot=True, mask=MatrizTnf)
   #plt.show()
-  plt.savefig('Metricas/metricas3.png')
-  plt.savefig('Metricas/metricas3.pdf')
+  plt.savefig('./static/images/metricas/metricas3.png')
+  plt.savefig('./static/images/metricas/metricas3.pdf')
   return Diagnosticos
 
 def drop_useless():

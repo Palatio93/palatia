@@ -27,8 +27,8 @@ def crea_grafico():
   plt.ylabel('Item')
   plt.xlabel('Frecuencia')
   plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='blue')
-  plt.savefig('Apriori/apriori1.png')
-  plt.savefig('Apriori/apriori1.pdf')
+  plt.savefig('./static/images/apriori/apriori1.png')
+  plt.savefig('./static/images/apriori/apriori1.pdf')
 
 def sanitization():
   DatosTransacciones = datos_transacciones()
@@ -54,19 +54,6 @@ def muestra_resultados(soporte,confianza,lifto):
     "Confianza":res[2][0][2]*100,
     "Lift":res[2][0][3]
   } for res in Resultados]
-  # for item in Resultados:
-  #   #El primer índice de la lista
-  #   Emparejar = item[0]
-  #   items = [x for x in Emparejar]
-  #   print("Regla: " + str(item[0]))
-
-  #   #El segundo índice de la lista
-  #   print("Soporte: " + str(item[1]))
-
-  #   #El tercer índice de la lista
-  #   print("Confianza: " + str(item[2][0][2]))
-  #   print("Lift: " + str(item[2][0][3])) 
-  #   print("=====================================")
   return reglas
 
 def main(soporte,confianza,lifto):
@@ -84,5 +71,4 @@ def main(soporte,confianza,lifto):
   #print(aplica_algo())
   print("Muestra de resultados")
   Resultados = muestra_resultados(soporte,confianza,lifto)
-
   return Resultados

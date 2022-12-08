@@ -20,16 +20,16 @@ def size_grouped(BCancer):
 
 def first_plot(BCancer):
   sns.pairplot(BCancer, hue='Diagnosis')
-  plt.savefig('Cluster/cluster1.png')
-  plt.savefig('Cluster/cluster1.pdf')
+  plt.savefig('./static/images/cluster/cluster1.png')
+  plt.savefig('./static/images/cluster/cluster1.pdf')
 
 def second_plot(BCancer):
   sns.scatterplot(x='Radius', y ='Perimeter', data=BCancer, hue='Diagnosis')
   plt.title('Gráfico de dispersión')
   plt.xlabel('Radius')
   plt.ylabel('Perimeter')
-  plt.savefig('Cluster/cluster2.png')
-  plt.savefig('Cluster/cluster2.pdf')
+  plt.savefig('./static/images/cluster/cluster2.png')
+  plt.savefig('./static/images/cluster/cluster2.pdf')
 
 def do_corr(BCancer):
   CorrBCancer = BCancer.corr(method='pearson')
@@ -43,8 +43,8 @@ def third_plot(CorrBCancer):
   plt.figure(figsize=(14,7))
   MatrizInf = np.triu(CorrBCancer)
   sns.heatmap(CorrBCancer, cmap='RdBu_r', annot=True, mask=MatrizInf)
-  plt.savefig('Cluster/cluster3.png')
-  plt.savefig('Cluster/cluster3.pdf')
+  plt.savefig('./static/images/cluster/cluster3.png')
+  plt.savefig('./static/images/cluster/cluster3.pdf')
 
 def standardize(BCancer):
   MatrizVariables = np.array(BCancer[['Texture', 'Area', 'Smoothness', 'Compactness', 'Symmetry', 'FractalDimension']])
@@ -59,8 +59,8 @@ def fourth_plot(MEstandarizada):
   plt.xlabel('Observaciones')
   plt.ylabel('Distancia')
   Arbol = shc.dendrogram(shc.linkage(MEstandarizada, method='complete', metric='euclidean'))
-  plt.savefig('Cluster/cluster4.png')
-  plt.savefig('Cluster/cluster4.pdf')
+  plt.savefig('./static/images/cluster/cluster4.png')
+  plt.savefig('./static/images/cluster/cluster4.pdf')
   return Arbol
 
 def hierarching(BCancer, MEstandarizada):
@@ -76,8 +76,8 @@ def hierarching(BCancer, MEstandarizada):
   plt.figure(figsize=(10, 7))
   plt.scatter(MEstandarizada[:,0], MEstandarizada[:,1], c=MJerarquico.labels_)
   plt.grid()
-  plt.savefig('Cluster/cluster5.png')
-  plt.savefig('Cluster/cluster5.pdf')
+  plt.savefig('./static/images/cluster/cluster5.png')
+  plt.savefig('./static/images/cluster/cluster5.pdf')
 
   SSE = []
   for i in range(2, 12):
@@ -91,8 +91,8 @@ def hierarching(BCancer, MEstandarizada):
   plt.xlabel('Cantidad de clusters *k*')
   plt.ylabel('SSE')
   plt.title('Elbow Method')
-  plt.savefig('Cluster/cluster6.png')
-  plt.savefig('Cluster/cluster6.pdf')
+  plt.savefig('./static/images/cluster/cluster6.png')
+  plt.savefig('./static/images/cluster/cluster6.pdf')
   return CentroidesH
 
 def kneeing(BCancer, MEstandarizada):

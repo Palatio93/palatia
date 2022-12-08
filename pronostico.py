@@ -27,8 +27,8 @@ def model1(ElektraHist):
   plt.title('Elektra')
   plt.grid(True)
   plt.legend()
-  plt.savefig('Pronostico/pronostico1.png')
-  plt.savefig('Pronostico/pronostico1.pdf')
+  plt.savefig('./static/images/pronostico/pronostico1.png')
+  plt.savefig('./static/images/pronostico/pronostico1.pdf')
 
   MDatos1 = ElektraHist.drop(columns = ['Volume', 'Dividends', 'Stock Splits'])
   MDatos1 = MDatos1.dropna()
@@ -68,8 +68,8 @@ def model1(ElektraHist):
   plt.title('Pronóstico de las acciones de Elektra')
   plt.grid(True)
   plt.legend()
-  plt.savefig('Pronostico/pronostico2.png')
-  plt.savefig('Pronostico/pronostico2.pdf')
+  plt.savefig('./static/images/pronostico/pronostico2.png')
+  plt.savefig('./static/images/pronostico/pronostico2.pdf')
 
   PrecioAccion = pd.DataFrame({'Open': [995.010010],
                               'High': [1024.890015], 
@@ -114,8 +114,8 @@ def model2(ElektraHist):
   plt.title('Pronóstico de las acciones de Elektra')
   plt.grid(True)
   plt.legend()
-  plt.savefig('Pronostico/pronostico3.png')
-  plt.savefig('Pronostico/pronostico3.pdf')
+  plt.savefig('./static/images/pronostico/pronostico3.png')
+  plt.savefig('./static/images/pronostico/pronostico3.pdf')
 
   PrecioAccion2 = pd.DataFrame({'Open': [995.010010],
                               'High': [1024.890015], 
