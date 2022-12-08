@@ -1,0 +1,20 @@
+{% extends 'algoritmo.html' %}
+
+
+{% block content %}
+
+  <h1 class="text-center">{% block title %}Métricas de Distancia{% endblock %}</h1>
+
+  <h3>
+    La distancia es: 
+    <small class="text-success">{% for dist in distanceM %}{{ dist.distanceM }}{% endfor %}</small>
+  </h3>
+  
+
+  <!-- <h2>La distancia es: {% for _ in distanceM %} {{ _.distanceM }} {% endfor %}</h2> -->
+
+  <footer>
+    <a href="metricas" class="btn btn-primary">Regresar a configuración del algoritmo metricas</a>
+  </footer>
+
+{% endblock %}

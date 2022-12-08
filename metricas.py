@@ -65,9 +65,16 @@ def measure():
 
   DstEuclidiana = cdist(MEstandarizada[0:10], MEstandarizada[0:10], metric='euclidean')
   MEuclidiana = pd.DataFrame(DstEuclidiana)
-  print(MEuclidiana) 
+  # print(MEuclidiana)
+  return MEuclidiana
 
+def measurepoints(MEstandarizada,pointA=0,pointB=1):
+  Objeto1 = MEstandarizada[pointA]
+  Objeto2 = MEstandarizada[pointB]
+  distanceM = distance.euclidean(Objeto1,Objeto2)
+  return distanceM
 
-def main():
-  measure()
-  return
+def main(pointA,pointB):
+  MEstandarizada = standardize()
+  distanceM = measurepoints(MEstandarizada,pointA,pointB)
+  return round(distanceM,3)

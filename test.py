@@ -1,8 +1,8 @@
 import pandas as pd 
 
-d = {'Name': ['Derek', 'Kalito', 'Aldirris'],
-     'Age': [22,24,21],
-     'City': ['Valorant','Minas Gerais','Payday']}
+d = {'Name': ['Derek', 'Kalito', 'Aldirris','Zuris'],
+     'Age': [22,24,21,23],
+     'City': ['Valorant','Minas Gerais','Payday','Bohemia Town']}
 df = pd.DataFrame(data=d, columns=['Name', 'Age', 'City'])
 
 print(d)
@@ -11,6 +11,9 @@ print(d)
 
 for ind in df.index:
   print(df['Name'][ind],"-- vive en --",df['City'][ind],"-- desde hace --",df['Age'][ind],"-- años --")
+
+print("Deben ser 4, tenemos -> ",len(df))
+print("Deben ser 3, tenemos -> ",len(df.columns))
 
 # reglas = [{
 #     "Regla": ", ".join([x for x in res[0]]),

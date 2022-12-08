@@ -8,6 +8,23 @@
 
 </div>
 
+<form action="{{ url_for('metricas') }}" method="POST">
+  <div class="form-row align-items-center">
+    <div class="col-auto">
+      <label for="objeto1">Objeto 1</label>
+      <input type="number" name="objeto1" id="objeto1" class="form-control" step="1" min="0" placeholder="Default es 0">
+    </div>
+    <div class="col-md-3">
+      <label for="objeto2">Objeto 2</label>
+      <input type="number" name="objeto2" id="objeto2" class="form-control" step="1" min="0" placeholder="Default es 1">
+    </div>
+    <div class="col-auto my-1">
+      <input type="submit" value="Calcular distancia"
+        class="btn btn-primary btn-sm"
+        onclick="return confirm('¿Los parámetros son correctos?')">
+    </div>
+  </div>
+</form>
 
 <footer>
   <a href="metricas" class="btn btn-primary">Regresar a configuración del algoritmo metricas de distancia</a>

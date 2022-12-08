@@ -42,10 +42,24 @@ def apriori():
     return render_template('algoritmos/apriori.html', resultados=Resultados)
 
 
-@app.route('/metricas')
+@app.route('/metricas', methods=['GET','POST'])
 def metricas():
-  mainMetricas()
-  return render_template('algoritmos/metricas.html')
+  if request.method == "GET":
+    return render_template('algoritmos/metricas.html')
+  if request.method == "POST":
+    obj1 = request.form['objeto1']
+    if obj1 == '':
+      obj1 = 0
+    else:
+      obj1 = int(obj1)
+    obj2 = request.form['objeto2']
+    if obj2 == '':
+      obj2 = 1
+    else:
+      obj2 = int(obj2)
+    dM = mainMetricas(obj1,obj2)
+    distanceM = [{'distanceM': dM}]
+    return render_template('algoritmos/metricasShow.html', distanceM=distanceM)
 
 
 @app.route('/cluster')
