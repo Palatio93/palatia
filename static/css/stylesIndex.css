@@ -313,8 +313,13 @@ Photo by <a href="https://unsplash.com/@robingaillotdrevon?utm_source=unsplash&u
   color: var(--cultured);
 }
 
+.weirdga {
+  margin-top: 10px;
+}
+
 /* FOOTER */
 footer {
+  margin-top: 25px;
   margin-bottom: 10px;
 }
 

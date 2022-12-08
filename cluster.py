@@ -72,6 +72,7 @@ def hierarching(BCancer, MEstandarizada):
   BCancer[BCancer.clusterH == 0]
   CentroidesH = BCancer.groupby(['clusterH'])['Texture', 'Area', 'Smoothness', 'Compactness', 'Symmetry', 'FractalDimension'].mean()
 # ** Este es SUPER IMPORTANTE --> CentroidesH
+# TODO -> CentroidesH se mandan al usuario 
   plt.figure(figsize=(10, 7))
   plt.scatter(MEstandarizada[:,0], MEstandarizada[:,1], c=MJerarquico.labels_)
   plt.grid()
