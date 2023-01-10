@@ -4,15 +4,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.spatial.distance import cdist    
 from scipy.spatial import distance
-from sklearn.preprocessing import StandardScaler, MinMaxScaler  
-# get_ipython().run_line_magic('matplotlib', 'inline')
+from sklearn.preprocessing import StandardScaler
 
 def get_dataset():
   Diagnosticos = pd.read_csv("WDBCOriginal.csv")
   return Diagnosticos
 
-def print_first():
-  Diagnosticos = get_dataset()
+def print_first(Diagnosticos):
+  # Diagnosticos = get_dataset()
   plt.plot(Diagnosticos['Texture'],Diagnosticos['Smoothness'],'o')
   plt.title('Gráfico de dispersión')
   plt.xlabel('Texture')
@@ -21,18 +20,28 @@ def print_first():
   plt.savefig('./static/images/metricas/metricas1.png')
   plt.savefig('./static/images/metricas/metricas1.pdf')
 
-def print_second():
-  Diagnosticos = get_dataset()
-  sns.scatterplot(x='Texture', y='Smoothness', data=Diagnosticos, hue='Radius')
+# def print_second():
+#   Diagnosticos = get_dataset()
+#   sns.scatterplot(x='Texture', y='Smoothness', data=Diagnosticos, hue='Radius')
+#   plt.title('Gráfico de dispersión')
+#   plt.xlabel('Texture')
+#   plt.ylabel('Smoothness')
+#   #plt.show()
+#   plt.savefig('./static/images/metricas/metricas2.png')
+#   plt.savefig('./static/images/metricas/metricas2.pdf')
+
+def print_second(Diagnosticos):
+  # Diagnosticos = get_dataset()
+  plt.plot(Diagnosticos['Perimeter'],Diagnosticos['Area'],'o')
   plt.title('Gráfico de dispersión')
-  plt.xlabel('Texture')
-  plt.ylabel('Smoothness')
+  plt.xlabel('Perimeter')
+  plt.ylabel('Area')
   #plt.show()
   plt.savefig('./static/images/metricas/metricas2.png')
   plt.savefig('./static/images/metricas/metricas2.pdf')
 
-def do_corr():
-  Diagnosticos = get_dataset()
+def do_corr(Diagnosticos):
+  # Diagnosticos = get_dataset()
   Diagnosticos.corr()
   plt.figure(figsize=(14,7))
   MatrizTnf=np.triu(Diagnosticos.corr())
@@ -42,16 +51,16 @@ def do_corr():
   plt.savefig('./static/images/metricas/metricas3.pdf')
   return Diagnosticos
 
-def drop_useless():
-  print_first()
-  print_second()
-  Diagnosticos = do_corr()
+def drop_useless(Diagnosticos):
+  print_first(Diagnosticos)
+  print_second(Diagnosticos)
+  Diagnosticos = do_corr(Diagnosticos)
   Diagnosticos = Diagnosticos.drop(columns=['Perimeter','Area'])
   Diagnosticos = Diagnosticos.drop(columns=['IDNumber','Diagnosis'])
   return Diagnosticos
 
-def standardize():
-  Diagnosticos = drop_useless()
+def standardize(Diagnosticos1):
+  Diagnosticos = drop_useless(Diagnosticos1)
   estandarizar = StandardScaler()
   MEstandarizada = estandarizar.fit_transform(Diagnosticos)
 
@@ -75,6 +84,7 @@ def measurepoints(MEstandarizada,pointA=0,pointB=1):
   return distanceM
 
 def main(pointA,pointB):
-  MEstandarizada = standardize()
+  Diagnosticos = get_dataset()
+  MEstandarizada = standardize(Diagnosticos)
   distanceM = measurepoints(MEstandarizada,pointA,pointB)
   return round(distanceM,3)
