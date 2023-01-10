@@ -5,9 +5,84 @@
 
   <h1 class="text-center">{% block title %}Clúster Jerárquico{% endblock %}</h1>
 
+  <h2>Top 10 de los valores</h2>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <th>Variable</th>
+      <th>Correlación</th>
+    </thead>
+      {% for val in top10 %}
+      <tbody>
+        <tr>
+          <td>{{ val.Columna1 }}</td>
+          <td>{{ val.Columna2 }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Centroides Originales</h2>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <th>Cluster</th>
+      <th>Textura</th>
+      <th>Área</th>
+      <th>Suavidad</th>
+      <th>Compacidad</th>
+      <th>Simetría</th>
+      <th>Dimensión Fractal</th>
+    </thead>
+      {% for val in CentroidesH %}
+      <tbody>
+        <tr>
+          <td>{{ val.Cluster }}</td>
+          <td>{{ val.Info.Textura }}</td>
+          <td>{{ val.Info.Area }}</td>
+          <td>{{ val.Info.Suavidad }}</td>
+          <td>{{ val.Info.Compacidad }}</td>
+          <td>{{ val.Info.Simetria }}</td>
+          <td>{{ val.Info.Dimension_Fractal }}</td>
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>El valor del codo es: {{ elbow }}</h2>
+
+  <h2>Centroides utilizando como clusters el valor del elbow obtenido</h2>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <th>Cluster</th>
+      <th>Textura</th>
+      <th>Área</th>
+      <th>Suavidad</th>
+      <th>Compacidad</th>
+      <th>Simetría</th>
+      <th>Dimensión Fractal</th>
+    </thead>
+      {% for val in CentroidesP %}
+      <tbody>
+        <tr>
+          <td>{{ val.Cluster }}</td>
+          <td>{{ val.Info.Textura }}</td>
+          <td>{{ val.Info.Area }}</td>
+          <td>{{ val.Info.Suavidad }}</td>
+          <td>{{ val.Info.Compacidad }}</td>
+          <td>{{ val.Info.Simetria }}</td>
+          <td>{{ val.Info.Dimension_Fractal }}</td>
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
 
 <footer>
-  <a href="metricas" class="btn btn-primary">Regresar a configuración del algoritmo clúster jerárquico</a>
+  <a href="clusterDownload" class="btn btn-primary">Descargar archivos obtenidos</a>
 </footer>
 
 {% endblock %}

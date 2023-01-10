@@ -17,7 +17,6 @@ def get_dataset():
 def size_grouped(BCancer):
   return BCancer.groupby('Diagnosis').size()
 
-
 def first_plot(BCancer):
   sns.pairplot(BCancer, hue='Diagnosis')
   plt.savefig('./static/images/cluster/cluster1.png')
@@ -37,7 +36,9 @@ def do_corr(BCancer):
 
 def top10_values(CorrBCancer):
   print("Top 10 valores")
-  print(CorrBCancer['Radius'].sort_values(ascending=False)[:10], '\n')
+  top10 = CorrBCancer['Radius'].sort_values(ascending=False)[:10]
+  print(top10, '\n')
+  return top10
 
 def third_plot(CorrBCancer):
   plt.figure(figsize=(14,7))
@@ -103,7 +104,8 @@ def kneeing(BCancer, MEstandarizada):
       SSE.append(km.inertia_)
 
   kl = KneeLocator(range(2, 12), SSE, curve="convex", direction="decreasing")
-  print("Elbow is: ", kl.elbow)
+  # print("Elbow is: ", kl.elbow)
+  elbow = kl.elbow
 
   plt.style.use('ggplot')
   kl.plot_knee()
@@ -118,7 +120,7 @@ def kneeing(BCancer, MEstandarizada):
   BCancer[BCancer.clusterP == 0]
 
   CentroidesP = BCancer.groupby(['clusterP'])['Texture', 'Area', 'Smoothness', 'Compactness', 'Symmetry', 'FractalDimension'].mean()
-  return CentroidesP
+  return CentroidesP, elbow
 
 # TODO: Revisar que tranza con el plot3D
 # def plot_3D():
@@ -146,14 +148,49 @@ def main():
   first_plot(BCancer)
   second_plot(BCancer)
   CorrBCancer = do_corr(BCancer)
-  print(top10_values(CorrBCancer))
+  top10 = top10_values(CorrBCancer)
+  top10_list = [{
+    "Columna1":index,
+    "Columna2":round(value,3)
+  } for index, value in top10.items()]
+  # for index, value in top10.items():
+  #   print(type(value))
+  #   print(f"Index: {index}, Value: {value}")
   third_plot(CorrBCancer)
   MEstandarizada = standardize(BCancer)
   fourth_plot(MEstandarizada)
   CentroidesH = hierarching(BCancer,MEstandarizada)
-  CentroidesP = kneeing(BCancer, MEstandarizada)
-  print(CentroidesP)
-  for ind in CentroidesP.index:
-    print("Textura: ",CentroidesP["Texture"][ind])
-    print("Area: ", CentroidesP["Area"][ind])
-  return
+  # print(type(CentroidesH))
+  CentroidesP, elbow = kneeing(BCancer, MEstandarizada)
+  # print(type(CentroidesP))
+  # print(CentroidesP)
+  CentroidesH_list = [{
+    "Cluster": ind,
+    "Info": {
+      "Textura": round(CentroidesH["Texture"][ind],3),
+      "Area": round(CentroidesH["Area"][ind],3),
+      "Suavidad": round(CentroidesH["Smoothness"][ind],3),
+      "Compacidad": round(CentroidesH["Compactness"][ind],3),
+      "Simetria": round(CentroidesH["Symmetry"][ind],3),
+      "Dimension_Fractal": round(CentroidesH["FractalDimension"][ind],3)
+    }
+  } for ind in CentroidesH.index]
+
+  CentroidesP_list = [{
+    "Cluster": ind,
+    "Info": {
+      "Textura": round(CentroidesP["Texture"][ind],3),
+      "Area": round(CentroidesP["Area"][ind],3),
+      "Suavidad": round(CentroidesP["Smoothness"][ind],3),
+      "Compacidad": round(CentroidesP["Compactness"][ind],3),
+      "Simetria": round(CentroidesP["Symmetry"][ind],3),
+      "Dimension_Fractal": round(CentroidesP["FractalDimension"][ind],3)
+    }
+  } for ind in CentroidesP.index]
+  # for ind in CentroidesP.index:
+  #   print("Textura: ",CentroidesP["Texture"][ind])
+  #   print("Area: ", CentroidesP["Area"][ind])
+  return top10_list, CentroidesH_list, CentroidesP_list, elbow
+
+if __name__ == "__main__":
+  main()

@@ -1,0 +1,55 @@
+{% extends 'algoritmo.html' %}
+
+
+{% block content %}
+
+  <h1 class="text-center">{% block title %}Bosques Aleatorios{% endblock %}</h1>
+
+  <h2>Matriz de clasificación</h2>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <th>Actual \ Clasificacion</th>
+      <th>Finado</th>
+      <th>Vivo</th>
+    </thead>
+      {% for val in Matriz_Clasificacion2 %}
+      <tbody>
+        <tr>
+          <td>{{ val.Actual }}</td>
+          <td>{{ val.Clasificacion.Finado }}</td>
+          <td>{{ val.Clasificacion.Vivo }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>El criterio usado en el algoritmo es: {{ criterio }}</h2>
+
+  <p>{{ reporte_clasif }}</p>
+
+  <h2>Importancia de cada una de las variables</h2>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <th>Variable</th>
+      <th>Valor</th>
+    </thead>
+      {% for val in ImportanciaMod2 %}
+      <tbody>
+        <tr>
+          <td>{{ val.Variable }}</td>
+          <td>{{ val.Valor }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>La precisión del algoritmo es: {{ acc_score }}</h2>
+
+
+<footer>
+  <a href="bosquesDownload" class="btn btn-primary">Descargar archivos obtenidos</a>
+</footer>
+
+{% endblock %}

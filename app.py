@@ -1,9 +1,15 @@
 # from requests import request
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from apriori import main as mainApriori
 from metricas import main as mainMetricas
 from cluster import main as mainCluster
-from pronostico import main as mainPronostico
+# from pronostico import main as mainPronostico
+from arboles import main as mainArboles
+from bosques import main as mainBosques
+from glob import glob
+from io import BytesIO
+from zipfile import ZipFile
+import os
 
 app = Flask(__name__)
 
@@ -41,6 +47,21 @@ def apriori():
     Resultados = mainApriori(soporte,confi,lifto)
     return render_template('algoritmos/apriori.html', resultados=Resultados)
 
+@app.route('/aprioriDownload')
+def downloadApriori():
+  target = './static/images/apriori/'
+
+  stream = BytesIO()
+  with ZipFile(stream, 'w') as zf:
+      for file in glob(os.path.join(target, '*.pdf')):
+          zf.write(file, os.path.basename(file))
+  stream.seek(0)
+
+  return send_file(
+      stream,
+      as_attachment=True,
+      download_name='apriori.zip'
+  )
 
 @app.route('/metricas', methods=['GET','POST'])
 def metricas():
@@ -61,15 +82,81 @@ def metricas():
     distanceM = [{'distanceM': dM}]
     return render_template('algoritmos/metricasShow.html', distanceM=distanceM)
 
+@app.route('/metricasDownload')
+def downloadMetricas():
+  target = './static/images/metricas/'
+
+  stream = BytesIO()
+  with ZipFile(stream, 'w') as zf:
+      for file in glob(os.path.join(target, '*.pdf')):
+          zf.write(file, os.path.basename(file))
+  stream.seek(0)
+
+  return send_file(
+      stream,
+      as_attachment=True,
+      download_name='metricas.zip'
+  )
 
 @app.route('/cluster')
 def cluster():
-  mainCluster()
-  return render_template('algoritmos/cluster.html')
+  top10, CentroidesH, CentroidesP, elbow = mainCluster()
+  return render_template('algoritmos/cluster.html', top10=top10, CentroidesH=CentroidesH, CentroidesP=CentroidesP, elbow=elbow)
 
+@app.route('/clusterDownload')
+def downloadCluster():
+  target = './static/images/cluster/'
 
-@app.route('/pronostico')
-def pronostico():
-  mainPronostico()
-  return render_template('algoritmos/pronostico.html')
+  stream = BytesIO()
+  with ZipFile(stream, 'w') as zf:
+      for file in glob(os.path.join(target, '*.pdf')):
+          zf.write(file, os.path.basename(file))
+  stream.seek(0)
 
+  return send_file(
+      stream,
+      as_attachment=True,
+      download_name='cluster.zip'
+  )
+
+@app.route('/arboles')
+def arboles():
+  acc_score, Matriz_Clasificacion1, criterio, reporte_clasif, ImportanciaMod1 = mainArboles(False)
+  return render_template('algoritmos/arboles.html', acc_score=acc_score, Matriz_Clasificacion1=Matriz_Clasificacion1, criterio=criterio, reporte_clasif=reporte_clasif, ImportanciaMod1=ImportanciaMod1)
+
+@app.route('/arbolesDownload')
+def downloadArboles():
+  target = './static/images/arboles/'
+
+  stream = BytesIO()
+  with ZipFile(stream, 'w') as zf:
+      for file in glob(os.path.join(target, '*.pdf')):
+          zf.write(file, os.path.basename(file))
+  stream.seek(0)
+
+  return send_file(
+      stream,
+      as_attachment=True,
+      download_name='arboles.zip'
+  )
+
+@app.route('/bosques')
+def bosques():
+  acc_score, Matriz_Clasificacion2, criterio, reporte_clasif, ImportanciaMod = mainBosques()
+  return render_template('algoritmos/bosques.html', acc_score=acc_score, Matriz_Clasificacion2=Matriz_Clasificacion2, criterio=criterio, reporte_clasif=reporte_clasif, ImportanciaMod2=ImportanciaMod)
+
+@app.route('/bosquesDownload')
+def downloadBosques():
+  target = './static/images/bosques/'
+
+  stream = BytesIO()
+  with ZipFile(stream, 'w') as zf:
+      for file in glob(os.path.join(target, '*.pdf')):
+          zf.write(file, os.path.basename(file))
+  stream.seek(0)
+
+  return send_file(
+      stream,
+      as_attachment=True,
+      download_name='bosques.zip'
+  )

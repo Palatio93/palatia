@@ -123,7 +123,7 @@ TransaccionesLista
 # In[8]:
 
 
-sup = 140/9690
+sup = 140/9690 # .01
 confi = 0.25
 lifto = 2
 ReglasC1 = apriori(TransaccionesLista, 
